@@ -8,9 +8,12 @@ class TestUser {
 
     @Test
     void expectTrueIfTwoUsersAreSame() {
-        Person nameA = Person.createPerson("A");
-        Person anotherReferenceForNameA = Person.createPerson("A");
+        double BILL_INITIAL_AMOUNT = 0;
+        Person nameA = Person.createPerson("A", BILL_INITIAL_AMOUNT);
+        Person anotherReferenceForNameA = Person.createPerson("A", BILL_INITIAL_AMOUNT);
 
         assertEquals(nameA, anotherReferenceForNameA);
     }
+
+
 }
