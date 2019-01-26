@@ -17,9 +17,9 @@ class Transaction {
 
     boolean makeTransaction(){
         Person.createOrFindPerson(nameWhoPaid,billAmount);
-
+        int noOfPeople = forWhomTheTransactionFor.size();
         for(String nameOfEach : forWhomTheTransactionFor){
-            Person.createOrFindPerson(nameOfEach,-billAmount);
+            Person.createOrFindPerson(nameOfEach,-billAmount/noOfPeople);
         }
 
         return Person.checkForSuccessfulTransaction();

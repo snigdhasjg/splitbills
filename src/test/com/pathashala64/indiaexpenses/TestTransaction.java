@@ -16,4 +16,15 @@ class TestTransaction {
 
         assertTrue(snacks.makeTransaction());
     }
+
+    @Test
+    void expectTrueIfAPaidForBAndC(){
+        List<String> namesOfAllForWhomTheTransactionFor = new ArrayList<>();
+        namesOfAllForWhomTheTransactionFor.add("B");
+        namesOfAllForWhomTheTransactionFor.add("C");
+
+        Transaction snacks = new Transaction(100,"A",namesOfAllForWhomTheTransactionFor);
+
+        assertTrue(snacks.makeTransaction());
+    }
 }
