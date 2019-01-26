@@ -18,16 +18,36 @@ class TestPerson {
     }
 
     @Test
-    void expectTrueIfAPaidForB(){
+    void expectTrueIfAPaidForB() {
         Person.createOrFindPerson("A", BILL_AMOUNT);
-        Person.createOrFindPerson("B",-BILL_AMOUNT);
+        Person.createOrFindPerson("B", -BILL_AMOUNT);
 
         assertTrue(Person.checkForSuccessfulTransaction());
     }
 
     @Test
-    void expectFalseIfNoTransactionHaveDone(){
+    void expectFalseIfNoTransactionHaveDone() {
         assertFalse(Person.checkForSuccessfulTransaction());
+    }
+
+    @Test
+    void expectMessageForAIfAPaidForHimself() {
+        String message = "gets 100.0";
+        Person nameA = Person.createOrFindPerson("A", 100);
+
+        String actualMessage = nameA.toString();
+
+        assertEquals(message, actualMessage);
+    }
+
+    @Test
+    void expectMessageForBIfAPaidForB() {
+        String message = "gives 100.0";
+        Person nameB = Person.createOrFindPerson("B", -100);
+
+        String actualMessage = nameB.toString();
+
+        assertEquals(message, actualMessage);
     }
 
 }

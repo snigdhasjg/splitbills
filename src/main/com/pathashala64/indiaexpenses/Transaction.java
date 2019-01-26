@@ -15,11 +15,11 @@ class Transaction {
         this.forWhomTheTransactionFor = forWhomTheTransactionFor;
     }
 
-    boolean makeTransaction(){
-        Person.createOrFindPerson(nameWhoPaid,billAmount);
+    boolean makeTransaction() {
+        Person.createOrFindPerson(nameWhoPaid, billAmount);
         int noOfPeople = forWhomTheTransactionFor.size();
-        for(String nameOfEach : forWhomTheTransactionFor){
-            Person.createOrFindPerson(nameOfEach,-billAmount/noOfPeople);
+        for (String nameOfEach : forWhomTheTransactionFor) {
+            Person.createOrFindPerson(nameOfEach, -billAmount / noOfPeople);
         }
 
         return Person.checkForSuccessfulTransaction();

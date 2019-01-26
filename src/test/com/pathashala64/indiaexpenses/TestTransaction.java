@@ -9,21 +9,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestTransaction {
     @Test
-    void expectTrueIfAPaidForHimself(){
+    void expectTrueIfAPaidForHimself() {
         List<String> namesOfAllForWhomTheTransactionFor = new ArrayList<>();
         namesOfAllForWhomTheTransactionFor.add("A");
-        Transaction snacks = new Transaction(100,"A",namesOfAllForWhomTheTransactionFor);
+        Transaction snacks = new Transaction(100, "A", namesOfAllForWhomTheTransactionFor);
 
         assertTrue(snacks.makeTransaction());
     }
 
     @Test
-    void expectTrueIfAPaidForBAndC(){
+    void expectTrueIfAPaidForBAndC() {
         List<String> namesOfAllForWhomTheTransactionFor = new ArrayList<>();
         namesOfAllForWhomTheTransactionFor.add("B");
         namesOfAllForWhomTheTransactionFor.add("C");
 
-        Transaction snacks = new Transaction(100,"A",namesOfAllForWhomTheTransactionFor);
+        Transaction snacks = new Transaction(100, "A", namesOfAllForWhomTheTransactionFor);
 
         assertTrue(snacks.makeTransaction());
     }
