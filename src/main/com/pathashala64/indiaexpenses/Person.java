@@ -5,29 +5,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Person {
-    private static final double TOLERANCE_FOR_DOUBLE = 0.001;
     private static Map<String,Person> allMembersOfTheGroup = new HashMap<>();
     private double totalExpense;
     private double owns;
 
     static Person createOrFindPerson(String name, double amount){
         if(allMembersOfTheGroup.containsKey(name)){
-            return allMembersOfTheGroup.get(name);
+            Person userThatPreviouslyExist = allMembersOfTheGroup.get(name);
+            userThatPreviouslyExist.noteDownMoney(amount);
+
+            return userThatPreviouslyExist;
         }
         Person userThatNotExistsInTheMap = new Person();
+        userThatNotExistsInTheMap.noteDownMoney(amount);
+
         allMembersOfTheGroup.put(name, userThatNotExistsInTheMap);
+
         return userThatNotExistsInTheMap;
     }
 
-    static boolean checkAuthenticityOfATransaction(){
-        //After each successful transaction the total amount for all person need to be zero
-        double total = 0;
-        for(Person eachPersonInTheMap : allMembersOfTheGroup.values()){
-            total+= eachPersonInTheMap.owns - eachPersonInTheMap.totalExpense;
+    static boolean checkTransaction() {
+        final double DOUBLE_VALUE_TOLERANCE = 0.001;
+        double totalMoneySpent = 0;
+        double totalMoneyOwnsByEveryOne = 0;
+
+        for(Person eachPeople : allMembersOfTheGroup.values()){
+            totalMoneySpent += eachPeople.totalExpense;
+            totalMoneyOwnsByEveryOne += eachPeople.owns;
         }
-        return Math.abs(total) < TOLERANCE_FOR_DOUBLE;
+
+        if(totalMoneySpent == 0){
+            return false;
+        }
+        return Math.abs(totalMoneySpent - totalMoneyOwnsByEveryOne) < DOUBLE_VALUE_TOLERANCE;
     }
 
     private Person(){}
+
+    private void noteDownMoney(double amount){
+        if(amount > 0){
+            this.owns += amount;
+            return;
+        }
+        this.totalExpense += Math.abs(amount);
+    }
 
 }

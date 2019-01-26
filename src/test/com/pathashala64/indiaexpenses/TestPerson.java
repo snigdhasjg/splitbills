@@ -2,9 +2,11 @@ package com.pathashala64.indiaexpenses;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestPerson {
+
+    private static final int BILL_AMOUNT = 100;
 
     @Test
     void expectTrueIfTwoUsersAreSame() {
@@ -15,6 +17,17 @@ class TestPerson {
         assertEquals(nameA, anotherReferenceForNameA);
     }
 
+    @Test
+    void expectTrueIfAPaidForB(){
+        Person.createOrFindPerson("A", BILL_AMOUNT);
+        Person.createOrFindPerson("B",-BILL_AMOUNT);
 
+        assertTrue(Person.checkTransaction());
+    }
+
+    @Test
+    void expectFalseIfNoTransactionHaveDone(){
+        assertFalse(Person.checkTransaction());
+    }
 
 }
