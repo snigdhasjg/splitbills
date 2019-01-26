@@ -6,7 +6,7 @@ import java.util.Map;
 
 class Person {
     private static Map<String,Person> allMembersOfTheGroup = new HashMap<>();
-    private double totalExpense;
+    private double totalIndividualExpense;
     private double owns;
 
     static Person createOrFindPerson(String name, double amount){
@@ -24,13 +24,13 @@ class Person {
         return userThatNotExistsInTheMap;
     }
 
-    static boolean checkTransaction() {
+    static boolean checkForSuccessfulTransaction() {
         final double DOUBLE_VALUE_TOLERANCE = 0.001;
         double totalMoneySpent = 0;
         double totalMoneyOwnsByEveryOne = 0;
 
         for(Person eachPeople : allMembersOfTheGroup.values()){
-            totalMoneySpent += eachPeople.totalExpense;
+            totalMoneySpent += eachPeople.totalIndividualExpense;
             totalMoneyOwnsByEveryOne += eachPeople.owns;
         }
 
@@ -47,7 +47,7 @@ class Person {
             this.owns += amount;
             return;
         }
-        this.totalExpense += Math.abs(amount);
+        this.totalIndividualExpense += Math.abs(amount);
     }
 
 }

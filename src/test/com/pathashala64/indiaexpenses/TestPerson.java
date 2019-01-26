@@ -22,12 +22,12 @@ class TestPerson {
         Person.createOrFindPerson("A", BILL_AMOUNT);
         Person.createOrFindPerson("B",-BILL_AMOUNT);
 
-        assertTrue(Person.checkTransaction());
+        assertTrue(Person.checkForSuccessfulTransaction());
     }
 
     @Test
     void expectFalseIfNoTransactionHaveDone(){
-        assertFalse(Person.checkTransaction());
+        assertFalse(Person.checkForSuccessfulTransaction());
     }
 
 }
