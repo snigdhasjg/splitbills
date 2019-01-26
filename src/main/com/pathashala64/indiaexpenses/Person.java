@@ -10,7 +10,7 @@ class Person {
     private double totalExpense;
     private double owns;
 
-    static Person createPerson(String name, double amount){
+    static Person createOrFindPerson(String name, double amount){
         if(allMembersOfTheGroup.containsKey(name)){
             return allMembersOfTheGroup.get(name);
         }
