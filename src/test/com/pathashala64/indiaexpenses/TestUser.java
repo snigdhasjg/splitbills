@@ -8,8 +8,8 @@ class TestUser {
 
     @Test
     void expectTrueIfTwoUsersAreSame() {
-        Person nameA = new Person("A");
-        Person anotherReferenceForNameA = new Person("A");
+        Person nameA = Person.createPerson("A");
+        Person anotherReferenceForNameA = Person.createPerson("A");
 
         assertEquals(nameA, anotherReferenceForNameA);
     }

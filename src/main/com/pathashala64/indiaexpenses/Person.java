@@ -1,32 +1,24 @@
 package com.pathashala64.indiaexpenses;
 
 //Represents a user by its name
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 class Person {
+    private static Map<String,Person> allMembersOfTheGroup = new HashMap<>();
     private final String name;
 
-    Person(String name){
+    private Person(String name){
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object anotherObject) {
-        if (this == anotherObject) {
-            return true;
+    static Person createPerson(String name){
+        if(allMembersOfTheGroup.containsKey(name)){
+            return allMembersOfTheGroup.get(name);
         }
-
-        if (anotherObject == null || getClass() != anotherObject.getClass()) {
-            return false;
-        }
-
-        Person other = (Person) anotherObject;
-        return name.equals(other.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+        Person userThatNotExistsInTheMap = new Person(name);
+        allMembersOfTheGroup.put(name, userThatNotExistsInTheMap);
+        return userThatNotExistsInTheMap;
     }
 
 }
