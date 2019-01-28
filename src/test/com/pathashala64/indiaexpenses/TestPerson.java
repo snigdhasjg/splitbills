@@ -50,4 +50,15 @@ class TestPerson {
         assertEquals(message, actualMessage);
     }
 
+    @Test
+    void expectMessageForAllIfAPaidForB() {
+        String message = "A gets 100.0\nB gives 100.0";
+        Person.createOrFindPerson("A", 100);
+        Person.createOrFindPerson("B", -100);
+
+        String actualMessage = Person.displayMessage();
+
+        assertEquals(message, actualMessage);
+    }
+
 }

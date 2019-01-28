@@ -24,4 +24,5 @@ class Transaction {
 
         return Person.checkForSuccessfulTransaction();
     }
+
 }

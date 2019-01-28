@@ -42,6 +42,24 @@ class Person {
         return Math.abs(totalMoneySpent - totalMoneyOwnsByEveryOne) < DOUBLE_VALUE_TOLERANCE;
     }
 
+    static void cleanTheGroupInformation(){
+        allMembersOfTheGroup.clear();
+    }
+
+    static String displayMessage() {
+        String message = "";
+        String[] names = allMembersOfTheGroup.keySet().toArray(new String[0]);
+
+        for (int i = 0; i < names.length - 1; i++) {
+            Person aPerson = allMembersOfTheGroup.get(names[i]);
+            message += names[i] + " " + aPerson + "\n";
+        }
+        String lastPersonInTheListName = names[names.length - 1];
+        Person lastPersonInTheList = allMembersOfTheGroup.get(lastPersonInTheListName);
+        allMembersOfTheGroup.clear();
+        return message + lastPersonInTheListName + " " + lastPersonInTheList;
+    }
+
     private Person() {
     }
 
@@ -55,10 +73,10 @@ class Person {
 
     @Override
     public String toString() {
-        if(totalIndividualExpense > owns){
-            return "gives " + (totalIndividualExpense-owns);
+        if (totalIndividualExpense > owns) {
+            return "gives " + (totalIndividualExpense - owns);
         }
-        return "gets " + (owns-totalIndividualExpense);
+        return "gets " + (owns - totalIndividualExpense);
     }
 
 }
