@@ -4,7 +4,6 @@ package com.pathashala64.indiaexpenses;
 import java.util.List;
 
 class Transaction {
-
     private final double billAmount;
     private final String nameWhoPaid;
     private final List<String> forWhomTheTransactionFor;
@@ -15,14 +14,15 @@ class Transaction {
         this.forWhomTheTransactionFor = forWhomTheTransactionFor;
     }
 
-    boolean makeTransaction() {
-        Person.createOrFindPerson(nameWhoPaid, billAmount);
-        int noOfPeople = forWhomTheTransactionFor.size();
-        for (String nameOfEach : forWhomTheTransactionFor) {
-            Person.createOrFindPerson(nameOfEach, -billAmount / noOfPeople);
-        }
-
-        return Person.checkForSuccessfulTransaction();
+    public double getBillAmount() {
+        return billAmount;
     }
 
+    public String getNameWhoPaid() {
+        return nameWhoPaid;
+    }
+
+    public List<String> getForWhomTheTransactionFor() {
+        return forWhomTheTransactionFor;
+    }
 }
