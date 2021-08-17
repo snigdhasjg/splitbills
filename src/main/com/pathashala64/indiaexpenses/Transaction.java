@@ -7,15 +7,25 @@ class Transaction {
     private final double billAmount;
     private final String nameWhoPaid;
     private final List<String> forWhomTheTransactionFor;
+    private final boolean includeOwner;
 
-    Transaction(double billAmount, String nameWhoPaid, List<String> forWhomTheTransactionFor) {
+    Transaction(double billAmount, String nameWhoPaid, List<String> forWhomTheTransactionFor, boolean includeOwner) {
         this.billAmount = billAmount;
         this.nameWhoPaid = nameWhoPaid;
         this.forWhomTheTransactionFor = forWhomTheTransactionFor;
+        this.includeOwner = includeOwner;
     }
 
-    public double getBillAmount() {
-        return billAmount;
+    Transaction(double billAmount, String nameWhoPaid, List<String> forWhomTheTransactionFor) {
+        this(billAmount, nameWhoPaid, forWhomTheTransactionFor, false);
+    }
+
+    public double getSharePrice() {
+        int size = forWhomTheTransactionFor.size();
+        if (includeOwner) {
+            size++;
+        }
+        return billAmount / size;
     }
 
     public String getNameWhoPaid() {

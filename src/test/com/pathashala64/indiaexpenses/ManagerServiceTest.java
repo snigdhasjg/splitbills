@@ -17,7 +17,7 @@ class ManagerServiceTest {
 
     @Test
     void testPerson1SpendInOneTransactionForHimselfAndPersonB() {
-        Transaction transaction = new Transaction(100, "Ram", List.of("Ram", "Sam"));
+        Transaction transaction = new Transaction(100, "Ram", List.of("Sam"), true);
 
         managerService.makeTransaction(transaction);
 
@@ -26,13 +26,13 @@ class ManagerServiceTest {
     }
 
     /**
-     * A spent 100 for Snacks for A, B, C, D
-     * B spent 500 for Taxi for C, D
+     * A spent 100 for Snacks for A, B, C, D <br/>
+     * B spent 500 for Taxi for C, D <br/>
      * D spent 300 for Bus for A, B
      */
     @Test
     void testMultipleTransactions() {
-        Transaction snacks = new Transaction(100, "A", List.of("A", "B", "C", "D"));
+        Transaction snacks = new Transaction(100, "A", List.of("B", "C", "D"), true);
         Transaction taxi = new Transaction(500, "B", List.of("C", "D"));
         Transaction bus = new Transaction(300, "D", List.of("A", "B"));
 

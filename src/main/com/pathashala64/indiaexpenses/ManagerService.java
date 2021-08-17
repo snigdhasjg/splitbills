@@ -12,14 +12,8 @@ public class ManagerService {
     }
 
     public ManagerService makeTransaction(Transaction transaction) {
-        updatePersonWallet(transaction.getNameWhoPaid(), transaction.getBillAmount());
-
-        int noOfPeople = transaction.getForWhomTheTransactionFor().size();
-        double amountNeedsToPaid = -transaction.getBillAmount() / noOfPeople;
-
-        for (String nameOfEach : transaction.getForWhomTheTransactionFor()) {
-            updatePersonWallet(nameOfEach, amountNeedsToPaid);
-        }
+        double sharePrice = transaction.getSharePrice();
+        transaction.getForWhomTheTransactionFor().forEach(e -> transact(e, transaction.getNameWhoPaid(), sharePrice));
         return this;
     }
 
@@ -28,19 +22,21 @@ public class ManagerService {
         return allMembersOfTheGroup
                 .entrySet()
                 .stream()
-                .map(e -> e.getKey() + " " + e.getValue())
+                .map(e -> e.getKey() + e.getValue())
                 .collect(Collectors.joining("\n"));
     }
 
-    private void updatePersonWallet(String personName, double amount) {
+    private void transact(String payerName, String receiverName, double amount) {
+        Person receiver = getPerson(receiverName);
+        Person payer = getPerson(payerName);
+
+        receiver.willGet(amount);
+        payer.willGive(amount);
+    }
+
+    private Person getPerson(String personName) {
         Person person = allMembersOfTheGroup.getOrDefault(personName, new Person());
-
-        if (amount >= 0) {
-            person.willGet(amount);
-        } else {
-            person.willGive(-amount);
-        }
-
         allMembersOfTheGroup.put(personName, person);
+        return person;
     }
 }

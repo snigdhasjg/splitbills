@@ -25,9 +25,9 @@ public class Person {
     @Override
     public String toString() {
         if (totalIndividualExpense > owns) {
-            return "gives " + (totalIndividualExpense - owns);
+            return " gives " + (totalIndividualExpense - owns);
         }
-        return "gets " + (owns - totalIndividualExpense);
+        return " gets " + (owns - totalIndividualExpense);
     }
 
 }
